@@ -32,11 +32,12 @@ class myHandler(BaseHTTPRequestHandler):
 		try:
 			#Check the file extension required and
 			#set the right mime type
-
+			datos=''
 			sendReply = False
 			if self.path.endswith(".html"):
 				mimetype='text/html'
 				f=open(nombre)
+				datos=f.read()
 				sendReply = True
 			if self.path.endswith(".jpg"):
 				mimetype='image/jpg'
@@ -57,12 +58,12 @@ class myHandler(BaseHTTPRequestHandler):
 				self.send_response(200)
 				self.send_header('Content-type',mimetype)
 				self.end_headers()
-				data=f.read()
+				datos=f.read()
 				
 				try:
-					self.wfile.write(data)
+					self.wfile.write(datos)
 				except:
-					self.wfile.write(bytes('data', 'UTF-8'))
+					self.wfile.write(bytes(datos, 'UTF-8'))
 					f.close()
 				
 			return
@@ -83,4 +84,3 @@ try:
 except KeyboardInterrupt:
 	print ('^C received, shutting down the web server')
 	server.socket.close()
-	
