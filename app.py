@@ -30,12 +30,12 @@ class myHandler(BaseHTTPRequestHandler):
 		datos=''
 		if self.path=="/":  #127.0.0.1:5000/
 			nombre="index.html" #127.0.0.1:5000/index.html
-		if 1:
+		try:
 			#Check the file extension required and
 			#set the right mime type
 			datos=''
 			sendReply = False
-			if self.path.endswith(".html"):
+			if nombre.endswith(".html"):
 				mimetype='text/html'
 				print(nombre)
 				f=open(nombre)
@@ -72,7 +72,7 @@ class myHandler(BaseHTTPRequestHandler):
 			return
 
 
-		#except IOError:
+		except IOError:
 			self.send_error(404,'File Not Found: %s' % self.path)
 
 try:
