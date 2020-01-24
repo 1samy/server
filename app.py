@@ -38,6 +38,7 @@ class myHandler(BaseHTTPRequestHandler):
 				mimetype='text/html'
 				f=open(nombre)
 				datos=f.read()
+				f.close()
 				sendReply = True
 			if self.path.endswith(".jpg"):
 				mimetype='image/jpg'
