@@ -60,7 +60,7 @@ class myHandler(BaseHTTPRequestHandler):
 				data=f.read()
 				
 				try:
-					self.wfile.write('data')
+					self.wfile.write(data)
 				except:
 					self.wfile.write(bytes('data', 'UTF-8'))
 					f.close()
