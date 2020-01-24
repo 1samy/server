@@ -24,7 +24,9 @@ class myHandler(BaseHTTPRequestHandler):
 	#Handler for the GET requests
 	def do_GET(self):
 		path=self.path
-		print(self.path)
+		print(self.path.split('/')[-1])
+		nombre=self.path.split('/')[-1]
+		datos=''
 		if self.path=="/":  #127.0.0.1:5000/
 			self.path="/index.html" #127.0.0.1:5000/index.html
 		try:
@@ -34,6 +36,7 @@ class myHandler(BaseHTTPRequestHandler):
 			sendReply = False
 			if self.path.endswith(".html"):
 				mimetype='text/html'
+				f=open(nombre)
 				sendReply = True
 			if self.path.endswith(".jpg"):
 				mimetype='image/jpg'
@@ -54,11 +57,13 @@ class myHandler(BaseHTTPRequestHandler):
 				self.send_response(200)
 				self.send_header('Content-type',mimetype)
 				self.end_headers()
+				data=f.read()
 				
 				try:
-					self.wfile.write('hola mundo')
+					self.wfile.write('data')
 				except:
-					self.wfile.write(bytes('hola mundo', 'UTF-8'))
+					self.wfile.write(bytes('data', 'UTF-8'))
+					f.close()
 				
 			return
 
