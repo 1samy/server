@@ -59,7 +59,7 @@ class myHandler(BaseHTTPRequestHandler):
 				self.send_response(200)
 				self.send_header('Content-type',mimetype)
 				self.end_headers()
-				datos=f.read()
+				#datos=f.read()
 				
 				try:
 					self.wfile.write(datos)
